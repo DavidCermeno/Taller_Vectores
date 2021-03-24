@@ -4,6 +4,7 @@ Created on Tue Mar 23 14:42:29 2021
 
 @author: Licht
 """
+# from collections import Counter
 
 # De los n elementos de un vector dado calcule:
 # a. La sumatoria
@@ -22,11 +23,8 @@ while i < len(l1):
     prod = prod * l1[i]
     i += 1
 print(f'El resultado de la prudcotria es: {prod}')
-
-print('El número máximo es: ')
-print(max([int(num) for num in l1]))
-print('El número mínimo es: ')
-print(min([int(num) for num in l1]))
+print('El número máximo es: {}'.format(max([int(num) for num in l1])))
+print('El número mínimo es: {}'.format(min([int(num) for num in l1])))
 
 
 # De los n elementos de un vector dado calcule:
@@ -83,6 +81,58 @@ print(f'La resta de los vectores es: {l4}')
 # De los n elementos de un vector dado identifique el número que mas se
 # repite e indique cual es.
 
+l1 = [1, 2, 2, 2, 3, 4, 5, 6, 7]
+print('El número que más se repite es: {}'.format(max(set(l1), key=l1.count)))
+
+# Dado un Vector v de longitud par, divida en 2 partes, en la primera parte
+# realice la productoria y en la segunda la sumatoria. Entregue los valores
+# resultantes.
+
+a = [1, 2, 3, 4, 5, 6, 8, 10]
+b = a[:len(a)//2]
+c = a[len(a)//2:]
+i = 0
+sumar = 0
+prod = 1
+if len(a) % 2 == 0:
+    for n in c:
+        sumar += n
+    print(f'El resultado de la sumatoria es: {sumar}')
+
+    while i < len(b):
+        prod = prod * b[i]
+        i += 1
+    print(f'El resultado de la productoria es: {prod}')
+else:
+    print('El vector no es par')
+
+
+# Dado un vector v, indique si es simétrico, un vector es simétrico si siendo
+# longitud par los números de la primera mitad son iguales al inverso de la
+# otra mitad por ejemplo: X=[1,2,3,3,2,1], en el ejemplo x es un vector
+# simétrico, en caso que la longitud del vector sea impar, se ignorará el
+# elemento central y se seguirá la misma lógica anterior, por ejemplo:
+# Y=[3,5,7,8,7,5,3], en este ejemplo Y es simétrico.
+
+a = [1, 2, 3, 5, 3, 2, 1]
+b = a[:len(a)//2]
+c = a[len(a)//2:]
+sum_b = 0
+sum_c = 0
+
+if len(a) % 2 != 0:
+    b = a[:len(a)//2]
+    c = a[(len(a)//2) + 1:]
+
+for x in b:
+    sum_b += x
+
+for y in c:
+    sum_c += y
+if sum_c == sum_b:
+    print("El vector es simetrico")
+else:
+    print("El vector no es simetrico")
 
 # Dado dos vectores númericos A y B debe realizar las siguiente operaciones
 # con conjuntos:
@@ -101,14 +151,12 @@ s2 = set(l2)
 s3 = s1 & s2
 l3 = list(s3)
 l1.extend([element for element in l2 if element not in l1])
-l4 = list(set(l1) - set(l2))
+l4 = list(s1 - s2)
+l5 = list(s2 - s1)
 print(f'Unión: {l1}')
 print(f'Intersección: {l3}')
 print(f'Diferencia A-B: {l4}')
-
-
-
-
+print(f'Diferencia B-A: {l5}')
 
 
 
